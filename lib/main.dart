@@ -61,10 +61,12 @@ class _HomePageState extends State<HomePage> {
                   child: Text('User details'),
                 ),
                  TextField(
+                   style: const TextStyle(
+                     color: Colors.tealAccent
+                   ),
                   onChanged: (user){
                     username = user;
                   },
-                   //obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Username",
