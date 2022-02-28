@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'userData.dart';
+
+String username='';
+String password='';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,14 +16,13 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home:  HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  //const HomePage({Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -56,18 +60,25 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(8.0),
                   child: Text('User details'),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                 TextField(
+                  onChanged: (user){
+                    username = user;
+                  },
+                   //obscureText: true,
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Username",
                     labelStyle: TextStyle(color: Colors.white),
                     hintText: 'Enter your username',
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 15,bottom: 30),
+                 Padding(
+                  padding: const EdgeInsets.only(top: 15,bottom: 30),
                   child: TextField(
-                    decoration: InputDecoration(
+                    onChanged: (pass){
+                      password = pass;
+                    },
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Password",
                       labelStyle: TextStyle(color: Colors.white),
@@ -80,7 +91,11 @@ class _HomePageState extends State<HomePage> {
                   textColor: Colors.white,
                   color: Colors.white10,
                   child: const Text('Sign In'),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return UserData(username,password);
+                    }));
+                  },
                 )
 
               ],
@@ -91,3 +106,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+// Navigator.push(
+// context,
+// MaterialPageRoute(builder: (context) => const SecondRoute()),
+// );
